@@ -46,16 +46,7 @@ const InputPanel = ({ onSimulate, isSimulating, onReset, hasResult }) => {
   };
 
   const handleReset = () => {
-    setFormData({
-      sender: "192.168.1.10",
-      receiver: "192.168.1.20",
-      mode: "tunnel",
-      payloadSize: 512,
-      spi: 4021,
-      sequenceNumber: 7,
-      mtuEnabled: false,
-      mtu: 1500
-    });
+    setFormData(generateRandomDefaults());
     onReset();
   };
 
