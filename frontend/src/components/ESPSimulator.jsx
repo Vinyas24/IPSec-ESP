@@ -34,34 +34,38 @@ const ESPSimulator = () => {
         <Card className="bg-black/30 backdrop-blur-xl border-white/20 shadow-2xl">
           <CardContent className="p-8">
             <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-              <TabsList className="grid w-full grid-cols-4 mb-8 bg-black/40 backdrop-blur-sm border border-white/20 p-1 rounded-xl">
+              <TabsList className="grid w-full grid-cols-4 mb-8 bg-black/60 backdrop-blur-md border-2 border-emerald-500/40 p-2 rounded-2xl shadow-2xl">
                 <TabsTrigger 
                   value="aim" 
-                  className="flex items-center gap-2 text-slate-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-emerald-500 data-[state=active]:to-teal-500 data-[state=active]:text-white data-[state=active]:shadow-lg transition-all duration-300"
+                  className="flex items-center gap-2 text-emerald-300 font-mono text-sm md:text-base px-2 md:px-4 py-3 data-[state=active]:bg-gradient-to-r data-[state=active]:from-emerald-500 data-[state=active]:to-cyan-500 data-[state=active]:text-black data-[state=active]:font-bold data-[state=active]:shadow-xl data-[state=active]:border data-[state=active]:border-emerald-300 transition-all duration-500 rounded-xl hover:bg-emerald-500/20"
                 >
-                  <Target className="w-4 h-4" />
-                  AIM
+                  <Target className="w-4 h-4 md:w-5 md:h-5" />
+                  <span className="hidden sm:block">AIM</span>
+                  <span className="sm:hidden">A</span>
                 </TabsTrigger>
                 <TabsTrigger 
                   value="objective" 
-                  className="flex items-center gap-2 text-slate-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-emerald-500 data-[state=active]:to-teal-500 data-[state=active]:text-white data-[state=active]:shadow-lg transition-all duration-300"
+                  className="flex items-center gap-2 text-emerald-300 font-mono text-sm md:text-base px-2 md:px-4 py-3 data-[state=active]:bg-gradient-to-r data-[state=active]:from-emerald-500 data-[state=active]:to-cyan-500 data-[state=active]:text-black data-[state=active]:font-bold data-[state=active]:shadow-xl data-[state=active]:border data-[state=active]:border-emerald-300 transition-all duration-500 rounded-xl hover:bg-emerald-500/20"
                 >
-                  <Shield className="w-4 h-4" />
-                  OBJECTIVE
+                  <Shield className="w-4 h-4 md:w-5 md:h-5" />
+                  <span className="hidden sm:block">OBJECTIVE</span>
+                  <span className="sm:hidden">O</span>
                 </TabsTrigger>
                 <TabsTrigger 
                   value="procedure" 
-                  className="flex items-center gap-2 text-slate-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-emerald-500 data-[state=active]:to-teal-500 data-[state=active]:text-white data-[state=active]:shadow-lg transition-all duration-300"
+                  className="flex items-center gap-2 text-emerald-300 font-mono text-sm md:text-base px-2 md:px-4 py-3 data-[state=active]:bg-gradient-to-r data-[state=active]:from-emerald-500 data-[state=active]:to-cyan-500 data-[state=active]:text-black data-[state=active]:font-bold data-[state=active]:shadow-xl data-[state=active]:border data-[state=active]:border-emerald-300 transition-all duration-500 rounded-xl hover:bg-emerald-500/20"
                 >
-                  <BookOpen className="w-4 h-4" />
-                  PROCEDURE
+                  <BookOpen className="w-4 h-4 md:w-5 md:h-5" />
+                  <span className="hidden sm:block">PROCEDURE</span>
+                  <span className="sm:hidden">P</span>
                 </TabsTrigger>
                 <TabsTrigger 
                   value="simulation" 
-                  className="flex items-center gap-2 text-slate-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-emerald-500 data-[state=active]:to-teal-500 data-[state=active]:text-white data-[state=active]:shadow-lg transition-all duration-300"
+                  className="flex items-center gap-2 text-emerald-300 font-mono text-sm md:text-base px-2 md:px-4 py-3 data-[state=active]:bg-gradient-to-r data-[state=active]:from-emerald-500 data-[state=active]:to-cyan-500 data-[state=active]:text-black data-[state=active]:font-bold data-[state=active]:shadow-xl data-[state=active]:border data-[state=active]:border-emerald-300 transition-all duration-500 rounded-xl hover:bg-emerald-500/20"
                 >
-                  <PlayCircle className="w-4 h-4" />
-                  SIMULATION
+                  <PlayCircle className="w-4 h-4 md:w-5 md:h-5" />
+                  <span className="hidden sm:block">SIMULATION</span>
+                  <span className="sm:hidden">S</span>
                 </TabsTrigger>
               </TabsList>
 
