@@ -8,16 +8,28 @@ import { Switch } from "./ui/switch";
 import { Loader2, Play, RotateCcw, Settings } from "lucide-react";
 
 const InputPanel = ({ onSimulate, isSimulating, onReset, hasResult }) => {
-  const [formData, setFormData] = useState({
-    sender: "192.168.1.10",
-    receiver: "192.168.1.20",
-    mode: "tunnel",
-    payloadSize: 512,
-    spi: 4021,
-    sequenceNumber: 7,
-    mtuEnabled: false,
-    mtu: 1500
-  });
+  // Generate random default values
+  const generateRandomDefaults = () => {
+    const randomIP1 = `192.168.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}`;
+    const randomIP2 = `10.0.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}`;
+    const modes = ["transport", "tunnel"];
+    const randomSPI = Math.floor(Math.random() * 65535) + 1000;
+    const randomSeq = Math.floor(Math.random() * 1000) + 1;
+    const randomPayload = Math.floor(Math.random() * 1400) + 64;
+    
+    return {
+      sender: randomIP1,
+      receiver: randomIP2,
+      mode: modes[Math.floor(Math.random() * modes.length)],
+      payloadSize: randomPayload,
+      spi: randomSPI,
+      sequenceNumber: randomSeq,
+      mtuEnabled: false,
+      mtu: 1500
+    };
+  };
+
+  const [formData, setFormData] = useState(generateRandomDefaults());
 
   const handleInputChange = (field, value) => {
     setFormData(prev => ({
