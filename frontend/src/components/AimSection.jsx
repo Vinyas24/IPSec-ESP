@@ -20,6 +20,20 @@ const AimSection = () => {
               functionality through interactive mock scenarios, providing hands-on experience with security parameter configurations, 
               encapsulation processes, and packet structure analysis without requiring actual cryptographic implementations.
             </p>
+            <div className="mt-6 grid md:grid-cols-3 gap-4 text-sm">
+              <div className="bg-emerald-500/10 p-4 rounded-lg border border-emerald-500/30">
+                <div className="text-emerald-400 font-semibold mb-2">Educational Focus</div>
+                <div className="text-slate-400">Bridge theoretical knowledge with practical ESP protocol understanding</div>
+              </div>
+              <div className="bg-teal-500/10 p-4 rounded-lg border border-teal-500/30">
+                <div className="text-teal-400 font-semibold mb-2">Skill Development</div>
+                <div className="text-slate-400">Develop network security analysis and troubleshooting capabilities</div>
+              </div>
+              <div className="bg-cyan-500/10 p-4 rounded-lg border border-cyan-500/30">
+                <div className="text-cyan-400 font-semibold mb-2">Career Preparation</div>
+                <div className="text-slate-400">Prepare for cybersecurity roles requiring VPN and IPSec expertise</div>
+              </div>
+            </div>
           </div>
         </CardContent>
       </Card>
