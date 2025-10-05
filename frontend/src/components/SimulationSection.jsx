@@ -125,12 +125,12 @@ const SimulationSection = () => {
       {/* Header */}
       <Card className="bg-gradient-to-br from-emerald-500/10 to-teal-500/10 backdrop-blur-sm border-emerald-500/30">
         <CardHeader className="text-center">
-          <div className="flex items-center justify-center gap-4 mb-4">
-            <PlayCircle className="w-8 h-8 text-emerald-400" />
-            <CardTitle className="text-3xl font-bold text-emerald-400">ESP Simulation Laboratory</CardTitle>
+          <div className="flex items-center justify-center gap-2 md:gap-4 mb-4">
+            <PlayCircle className="w-6 h-6 md:w-8 md:h-8 text-emerald-400" />
+            <CardTitle className="text-lg md:text-2xl lg:text-3xl font-bold text-emerald-400 font-mono">[$ESP_SIM_LAB]</CardTitle>
           </div>
-          <p className="text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed">
-            Configure ESP parameters and execute real-time simulation to understand protocol behavior
+          <p className="text-sm md:text-base lg:text-lg text-emerald-300 max-w-3xl mx-auto leading-relaxed font-mono">
+            >> Configure_ESP_parameters && execute_real_time_simulation(protocol_behavior) <<
           </p>
         </CardHeader>
       </Card>
