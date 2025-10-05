@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 import { Card, CardContent } from "./ui/card";
+import Sidebar from "./Sidebar";
 import AimSection from "./AimSection";
+import TheorySection from "./TheorySection";
 import ObjectiveSection from "./ObjectiveSection";
 import ProcedureSection from "./ProcedureSection";
 import SimulationSection from "./SimulationSection";
-import { Shield, Target, BookOpen, PlayCircle } from "lucide-react";
 
 const ESPSimulator = () => {
   const [activeTab, setActiveTab] = useState("aim");
