@@ -136,9 +136,9 @@ const SimulationSection = () => {
       </Card>
 
       {/* Main Simulation Interface */}
-      <div className="grid lg:grid-cols-2 gap-8">
+      <div className="flex flex-col lg:grid lg:grid-cols-2 gap-4 md:gap-8">
         {/* Input Panel */}
-        <div>
+        <div className="order-1">
           <InputPanel 
             onSimulate={handleSimulation} 
             isSimulating={isSimulating}
@@ -148,7 +148,7 @@ const SimulationSection = () => {
         </div>
 
         {/* Result Panel */}
-        <div>
+        <div className="order-2">
           <ResultPanel 
             result={simulationResult} 
             isSimulating={isSimulating}
