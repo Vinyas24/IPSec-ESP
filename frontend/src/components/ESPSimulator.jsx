@@ -8,7 +8,7 @@ import ProcedureSection from "./ProcedureSection";
 import SimulationSection from "./SimulationSection";
 
 const ESPSimulator = () => {
-  const [activeTab, setActiveTab] = useState("aim");
+  const [activeSection, setActiveSection] = useState("aim");
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-900" style={{ backgroundColor: "#0c0f14" }}>
