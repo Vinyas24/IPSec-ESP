@@ -16,14 +16,17 @@ const ESPSimulator = () => {
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/20 via-teal-500/20 to-cyan-500/20 blur-3xl"></div>
         <div className="relative bg-black/20 backdrop-blur-xl border-b border-white/10">
-          <div className="container mx-auto px-6 py-8">
+          <div className="container mx-auto px-4 md:px-6 py-6 md:py-8">
             <div className="text-center">
-              <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 bg-clip-text text-transparent mb-4">
-                IPSec ESP Simulation
+              <h1 className="text-2xl md:text-4xl lg:text-6xl font-bold bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 bg-clip-text text-transparent mb-4 font-mono tracking-wider">
+                [IPSec_ESP_Simulation]
               </h1>
-              <p className="text-xl text-slate-300 max-w-2xl mx-auto">
-                Advanced Encapsulating Security Protocol Simulation Platform
+              <p className="text-sm md:text-lg lg:text-xl text-emerald-300 max-w-2xl mx-auto font-mono">
+                >> Advanced_Encapsulating_Security_Protocol_Platform <<
               </p>
+              <div className="text-xs md:text-sm text-cyan-400 mt-2 font-mono">
+                {new Date().toISOString().replace('T', ' ').slice(0, 19)} | STATUS: ACTIVE
+              </div>
             </div>
           </div>
         </div>
