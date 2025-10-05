@@ -25,7 +25,7 @@ const ESPSimulator = () => {
                 >> Advanced_Encapsulating_Security_Protocol_Platform <<
               </p>
               <div className="text-xs md:text-sm text-cyan-400 mt-2 font-mono">
-                {new Date().toISOString().replace('T', ' ').slice(0, 19)} | STATUS: ACTIVE
+                {new Date().toISOString().split('T')[0]} {new Date().toISOString().split('T')[1].slice(0, 8)} | STATUS: ACTIVE
               </div>
             </div>
           </div>
