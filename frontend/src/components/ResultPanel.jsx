@@ -90,31 +90,7 @@ const ResultPanel = ({ result, isSimulating }) => {
         </CardContent>
       </Card>
 
-      {/* Packet Structure */}
-      <Card className="bg-black/30 backdrop-blur-sm border-white/20">
-        <CardHeader>
-          <CardTitle className="text-xl text-slate-200">Packet Structure Breakdown</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          {result.packetStructure.map((segment, index) => (
-            <div key={index} className="flex items-center gap-4">
-              <div className={`w-4 h-4 ${segment.color} rounded`}></div>
-              <div className="flex-1">
-                <div className="flex justify-between items-center">
-                  <span className="text-slate-300">{segment.name}</span>
-                  <span className="text-slate-400 text-sm">{segment.size} bytes</span>
-                </div>
-                <div className="w-full bg-black/40 rounded-full h-2 mt-1">
-                  <div 
-                    className={`h-2 ${segment.color} rounded-full transition-all duration-1000`}
-                    style={{ width: `${(segment.size / result.totalPacketSize) * 100}%` }}
-                  ></div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </CardContent>
-      </Card>
+
 
       {/* Size Analysis */}
       <Card className="bg-black/30 backdrop-blur-sm border-white/20">
