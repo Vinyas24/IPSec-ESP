@@ -130,7 +130,7 @@ const SimulationSection = () => {
             <CardTitle className="text-lg md:text-2xl lg:text-3xl font-bold text-emerald-400 font-mono">[$ESP_SIM_LAB]</CardTitle>
           </div>
           <p className="text-sm md:text-base lg:text-lg text-emerald-300 max-w-3xl mx-auto leading-relaxed font-mono">
-            >> Configure_ESP_parameters && execute_real_time_simulation(protocol_behavior) <<
+            {'>> Configure_ESP_parameters && execute_real_time_simulation(protocol_behavior) <<'}
           </p>
         </CardHeader>
       </Card>
