@@ -22,7 +22,7 @@ const ESPSimulator = () => {
                 [IPSec_ESP_Simulation]
               </h1>
               <p className="text-sm md:text-lg lg:text-xl text-emerald-300 max-w-2xl mx-auto font-mono">
-                >> Advanced_Encapsulating_Security_Protocol_Platform <<
+                {'>> Advanced_Encapsulating_Security_Protocol_Platform <<'}
               </p>
               <div className="text-xs md:text-sm text-cyan-400 mt-2 font-mono">
                 {new Date().toISOString().split('T')[0]} {new Date().toISOString().split('T')[1].slice(0, 8)} | STATUS: ACTIVE
