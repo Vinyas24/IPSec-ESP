@@ -105,7 +105,7 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
                 [ESP_SIMULATOR]
               </h1>
               <p className="text-emerald-300 font-mono">
-                {'>> SELECT_NAVIGATION_TARGET <<'}
+                {' SELECT_NAVIGATION_TARGET '}
               </p>
             </div>
 
