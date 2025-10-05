@@ -33,9 +33,9 @@ const ESPSimulator = () => {
       </div>
 
       {/* Main Content */}
-      <div className="container mx-auto px-6 py-12">
+      <div className="container mx-auto px-2 md:px-6 py-6 md:py-12">
         <Card className="bg-black/30 backdrop-blur-xl border-white/20 shadow-2xl">
-          <CardContent className="p-8">
+          <CardContent className="p-3 md:p-8">
             <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
               <TabsList className="grid w-full grid-cols-4 mb-8 bg-black/60 backdrop-blur-md border-2 border-emerald-500/40 p-2 rounded-2xl shadow-2xl">
                 <TabsTrigger 
