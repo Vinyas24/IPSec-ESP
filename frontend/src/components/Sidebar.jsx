@@ -38,14 +38,11 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
           <div className="p-6 border-b border-emerald-500/20">
             <div className="text-center">
               <h1 className="text-lg font-bold bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent font-mono tracking-wider mb-2">
-                [ESP_SIMULATOR]
+                ESP SIMULATOR
               </h1>
               <p className="text-xs text-emerald-300 font-mono">
-                {'>> NAVIGATION_CONSOLE <<'}
+                {'NAVIGATION CONSOLE'}
               </p>
-              <div className="text-xs text-cyan-400 mt-2 font-mono">
-                STATUS: ONLINE | {new Date().toISOString().split('T')[0]}
-              </div>
             </div>
           </div>
 
@@ -84,10 +81,8 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
         </Card>
       </div>
 
-      {/* Mobile Full-Screen Overlay */}
       {isMobileMenuOpen && (
         <div className="lg:hidden fixed inset-0 z-50 bg-black/95 backdrop-blur-xl">
-          {/* Close Button */}
           <div className="absolute top-4 right-4">
             <Button
               onClick={() => setIsMobileMenuOpen(false)}
@@ -97,19 +92,16 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
             </Button>
           </div>
 
-          {/* Mobile Menu Content */}
           <div className="flex flex-col h-full justify-center items-center p-8">
-            {/* Header */}
             <div className="text-center mb-12">
               <h1 className="text-2xl font-bold bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent font-mono tracking-wider mb-4">
-                [ESP_SIMULATOR]
+                ESP SIMULATOR
               </h1>
               <p className="text-emerald-300 font-mono">
-                {' SELECT_NAVIGATION_TARGET '}
+                {' SELECT NAVIGATION TARGET '}
               </p>
             </div>
 
-            {/* Navigation Items */}
             <div className="w-full max-w-sm space-y-4">
               {navigationItems.map((item, index) => (
                 <Button
@@ -133,12 +125,6 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
                   </div>
                 </Button>
               ))}
-            </div>
-
-            {/* Footer */}
-            <div className="mt-12 text-center text-sm text-emerald-400 font-mono">
-              <div>ESP Protocol Simulator</div>
-              <div className="text-cyan-400 mt-1">Mobile Interface Active</div>
             </div>
           </div>
         </div>

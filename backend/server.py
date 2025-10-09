@@ -1,75 +1,93 @@
-from fastapi import FastAPI, APIRouter
-from dotenv import load_dotenv
-from starlette.middleware.cors import CORSMiddleware
-from motor.motor_asyncio import AsyncIOMotorClient
 import os
-import logging
-from pathlib import Path
-from pydantic import BaseModel, Field
-from typing import List
-import uuid
-from datetime import datetime
+import struct
+import hmac
+import hashlib
+from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
+from cryptography.hazmat.primitives import padding
+from cryptography.hazmat.backends import default_backend
+
+AES_BLOCK_SIZE = 16
+
+def hmac_sha256(key, data):
+    return hmac.new(key, data, hashlib.sha256).digest()
+
+def aes_cbc_encrypt(key, iv, data):
+    padder = padding.PKCS7(128).padder()
+    padded = padder.update(data) + padder.finalize()
+    cipher = Cipher(algorithms.AES(key), modes.CBC(iv), backend=default_backend())
+    encryptor = cipher.encryptor()
+    return encryptor.update(padded) + encryptor.finalize()
+
+def aes_cbc_decrypt(key, iv, data):
+    cipher = Cipher(algorithms.AES(key), modes.CBC(iv), backend=default_backend())
+    decryptor = cipher.decryptor()
+    padded = decryptor.update(data) + decryptor.finalize()
+    unpadder = padding.PKCS7(128).unpadder()
+    return unpadder.update(padded) + unpadder.finalize()
+
+def esp_encrypt(mode, spi, seq_num, payload_size):
+    # --- Step 1: Create dummy payload depending on mode ---
+    if mode.lower() == "tunnel":
+        payload = b"IP_HEADER|" + os.urandom(payload_size)  # encrypt whole IP packet
+    else:  # transport
+        payload = b"TCP_DATA|" + os.urandom(payload_size)  # encrypt only transport data
+
+    # --- Step 2: ESP Header ---
+    esp_header = struct.pack("!I", spi) + struct.pack("!I", seq_num)
+
+    # --- Step 3: AES + HMAC Setup ---
+    enc_key = hashlib.sha256(b"encryption-key").digest()[:16]
+    auth_key = hashlib.sha256(b"auth-key").digest()
+    iv = os.urandom(AES_BLOCK_SIZE)
+
+    ciphertext = aes_cbc_encrypt(enc_key, iv, payload)
+
+    # --- Step 4: Integrity check (HMAC) ---
+    hmac_value = hmac_sha256(auth_key, esp_header + iv + ciphertext)
+
+    # --- Step 5: Final ESP packet ---
+    esp_packet = esp_header + iv + ciphertext + hmac_value
+
+    print(f"\n--- ESP {mode.upper()} MODE ENCRYPTION ---")
+    print(f"SPI: {spi}")
+    print(f"Sequence: {seq_num}")
+    print(f"Payload size: {len(payload)} bytes")
+    print(f"Encrypted ESP packet length: {len(esp_packet)} bytes")
+
+    return esp_packet, enc_key, auth_key
 
 
-ROOT_DIR = Path(__file__).parent
-load_dotenv(ROOT_DIR / '.env')
+def esp_decrypt(esp_packet, enc_key, auth_key):
+    # --- Extract header ---
+    spi, seq = struct.unpack("!I", esp_packet[:4])[0], struct.unpack("!I", esp_packet[4:8])[0]
+    iv = esp_packet[8:24]
+    ciphertext = esp_packet[24:-32]
+    received_hmac = esp_packet[-32:]
 
-# MongoDB connection
-mongo_url = os.environ['MONGO_URL']
-client = AsyncIOMotorClient(mongo_url)
-db = client[os.environ['DB_NAME']]
+    # --- Verify HMAC ---
+    calc_hmac = hmac_sha256(auth_key, esp_packet[: -32])
+    if not hmac.compare_digest(received_hmac, calc_hmac):
+        raise ValueError("Integrity check failed!")
 
-# Create the main app without a prefix
-app = FastAPI()
+    # --- Decrypt payload ---
+    plaintext = aes_cbc_decrypt(enc_key, iv, ciphertext)
 
-# Create a router with the /api prefix
-api_router = APIRouter(prefix="/api")
+    print(f"\n--- ESP PACKET DECRYPTION ---")
+    print(f"SPI: {spi}")
+    print(f"Sequence: {seq}")
+    print(f"Recovered payload size: {len(plaintext)} bytes")
 
+    return plaintext
 
-# Define Models
-class StatusCheck(BaseModel):
-    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
-    client_name: str
-    timestamp: datetime = Field(default_factory=datetime.utcnow)
+if __name__ == "__main__":
+    mode = input("Enter ESP mode (tunnel/transport): ").strip().lower()
+    spi = int(input("Enter SPI (e.g., 1001): "))
+    seq = int(input("Enter Sequence Number: "))
+    payload_size = int(input("Enter Payload Size (bytes): "))
 
-class StatusCheckCreate(BaseModel):
-    client_name: str
+    esp_packet, enc_key, auth_key = esp_encrypt(mode, spi, seq, payload_size)
+    recovered_payload = esp_decrypt(esp_packet, enc_key, auth_key)
 
-# Add your routes to the router instead of directly to app
-@api_router.get("/")
-async def root():
-    return {"message": "Hello World"}
-
-@api_router.post("/status", response_model=StatusCheck)
-async def create_status_check(input: StatusCheckCreate):
-    status_dict = input.dict()
-    status_obj = StatusCheck(**status_dict)
-    _ = await db.status_checks.insert_one(status_obj.dict())
-    return status_obj
-
-@api_router.get("/status", response_model=List[StatusCheck])
-async def get_status_checks():
-    status_checks = await db.status_checks.find().to_list(1000)
-    return [StatusCheck(**status_check) for status_check in status_checks]
-
-# Include the router in the main app
-app.include_router(api_router)
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_credentials=True,
-    allow_origins=os.environ.get('CORS_ORIGINS', '*').split(','),
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-# Configure logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-)
-logger = logging.getLogger(__name__)
-
-@app.on_event("shutdown")
-async def shutdown_db_client():
-    client.close()
+    print("\nDecrypted Payload (hexadecimal):")
+    print(recovered_payload.hex())  
+    print("\nESP simulation completed.")

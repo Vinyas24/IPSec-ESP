@@ -11,26 +11,23 @@ const SimulationSection = () => {
   const handleSimulation = async (inputData) => {
     setIsSimulating(true);
     
-    // Simulate processing delay
     await new Promise(resolve => setTimeout(resolve, 1200));
     
-    // Generate mock ESP simulation result
     const result = generateESPResult(inputData);
     setSimulationResult(result);
     setIsSimulating(false);
   };
 
   const generateESPResult = (input) => {
-    const espHeaderSize = 8; // Standard ESP header size
-    const ivSize = input.mode === "tunnel" ? 16 : 8; // IV size varies by mode
+    const espHeaderSize = 8; 
+    const ivSize = input.mode === "tunnel" ? 16 : 8; 
     const paddingSize = calculatePadding(input.payloadSize);
-    const trailerSize = 2; // ESP trailer (Next Header + Pad Length)
-    const authSize = 12; // Authentication data size
+    const trailerSize = 2; 
+    const authSize = 12; 
     
     const totalOverhead = espHeaderSize + ivSize + paddingSize + trailerSize + authSize;
     const totalPacketSize = input.payloadSize + totalOverhead;
     
-    // Mock MTU check
     const mtuExceeded = input.mtu && totalPacketSize > input.mtu;
     
     return {
@@ -60,10 +57,9 @@ const SimulationSection = () => {
   };
 
   const calculatePadding = (payloadSize) => {
-    // ESP requires padding to align to 4-byte boundary
     const blockSize = 4;
     const paddingNeeded = (blockSize - (payloadSize % blockSize)) % blockSize;
-    return Math.max(paddingNeeded, 4); // Minimum 4 bytes padding for demonstration
+    return Math.max(paddingNeeded, 4); 
   };
 
   const generateEncapsulationSteps = (input, overhead) => [
@@ -122,22 +118,19 @@ const SimulationSection = () => {
 
   return (
     <div className="space-y-8">
-      {/* Header */}
       <Card className="bg-gradient-to-br from-emerald-500/10 to-teal-500/10 backdrop-blur-sm border-emerald-500/30">
         <CardHeader className="text-center">
           <div className="flex items-center justify-center gap-2 md:gap-4 mb-4">
             <PlayCircle className="w-6 h-6 md:w-8 md:h-8 text-emerald-400" />
-            <CardTitle className="text-lg md:text-2xl lg:text-3xl font-bold text-emerald-400 font-mono">[$ESP_SIM_LAB]</CardTitle>
+            <CardTitle className="text-lg md:text-2xl lg:text-3xl font-bold text-emerald-400 font-mono">ESP SIMULATION</CardTitle>
           </div>
           <p className="text-sm md:text-base lg:text-lg text-emerald-300 max-w-3xl mx-auto leading-relaxed font-mono">
-            {'>> Configure_ESP_parameters && execute_real_time_simulation(protocol_behavior) <<'}
+            {'Configure ESP parameters & execute real time simulation(protocol behavior)'}
           </p>
         </CardHeader>
       </Card>
 
-      {/* Main Simulation Interface */}
       <div className="flex flex-col lg:grid lg:grid-cols-2 gap-4 md:gap-8">
-        {/* Input Panel */}
         <div className="order-1">
           <InputPanel 
             onSimulate={handleSimulation} 
@@ -147,7 +140,6 @@ const SimulationSection = () => {
           />
         </div>
 
-        {/* Result Panel */}
         <div className="order-2">
           <ResultPanel 
             result={simulationResult} 

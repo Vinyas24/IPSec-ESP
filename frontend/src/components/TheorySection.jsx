@@ -54,7 +54,7 @@ const TheorySection = () => {
       name: "Authentication Data",
       description: "Cryptographic hash providing integrity verification",
       purpose: "Ensures packet has not been tampered with during transmission",
-      size: "Variable (12-16 bytes typical)",
+      size: "12-16 bytes typical",
       color: "indigo"
     }
   ];
@@ -94,14 +94,13 @@ const TheorySection = () => {
           <div className="mx-auto w-16 h-16 bg-gradient-to-br from-emerald-400 to-teal-400 rounded-full flex items-center justify-center mb-4">
             <Layers className="w-8 h-8 text-white" />
           </div>
-          <CardTitle className="text-3xl font-bold text-emerald-400 mb-2 font-mono">[IPSec_ESP_Theory]</CardTitle>
+          <CardTitle className="text-3xl font-bold text-emerald-400 mb-2 font-mono">IPSec ESP Theory</CardTitle>
           <p className="text-lg text-emerald-300 max-w-4xl mx-auto leading-relaxed font-mono">
-            {'>> Comprehensive_Protocol_Analysis && Security_Implementation_Details <<'}
+            {'Comprehensive Protocol Analysis & Security Implementation Details'}
           </p>
         </CardHeader>
       </Card>
 
-      {/* Protocol Overview */}
       <Card className="bg-black/30 backdrop-blur-sm border-white/20">
         <CardHeader>
           <CardTitle className="text-2xl text-slate-200 font-mono">Protocol Overview</CardTitle>
@@ -161,7 +160,6 @@ const TheorySection = () => {
         </CardContent>
       </Card>
 
-      {/* ESP Header Structure */}
       <Card className="bg-black/30 backdrop-blur-sm border-white/20">
         <CardHeader>
           <CardTitle className="text-2xl text-slate-200 font-mono">ESP Header Structure</CardTitle>
@@ -199,7 +197,6 @@ const TheorySection = () => {
         </CardContent>
       </Card>
 
-      {/* Operational Modes */}
       <Card className="bg-black/30 backdrop-blur-sm border-white/20">
         <CardHeader>
           <CardTitle className="text-2xl text-slate-200 font-mono">Operational Modes</CardTitle>
@@ -268,7 +265,6 @@ const TheorySection = () => {
         </CardContent>
       </Card>
 
-      {/* Security Services */}
       <Card className="bg-black/30 backdrop-blur-sm border-white/20">
         <CardHeader>
           <CardTitle className="text-2xl text-slate-200 font-mono">Security Services</CardTitle>
@@ -288,7 +284,7 @@ const TheorySection = () => {
                       </h4>
                       <p className="text-slate-300 mb-3">{service.description}</p>
                       <div className="text-sm text-slate-400">
-                        <strong>Implementation:</strong> {service.implementation}
+                        <strong>Implementation : </strong> {service.implementation}
                       </div>
                     </div>
                   </div>
@@ -299,7 +295,6 @@ const TheorySection = () => {
         </CardContent>
       </Card>
 
-      {/* Important Notes */}
       <Card className="bg-black/20 backdrop-blur-sm border-amber-500/30">
         <CardHeader>
           <div className="flex items-center gap-3">

@@ -41,14 +41,11 @@ const ESPSimulator = () => {
             <div className="container mx-auto px-4 md:px-6 py-6 md:py-8 lg:pl-8">
               <div className="text-center lg:text-left">
                 <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 bg-clip-text text-transparent mb-4 font-mono tracking-wider">
-                  [IPSec_ESP_Simulation]
+                  IPSec ESP Simulation
                 </h1>
                 <p className="text-sm md:text-lg text-emerald-300 max-w-3xl mx-auto lg:mx-0 font-mono">
-                  {'>> Advanced_Encapsulating_Security_Protocol_Platform <<'}
+                  {' Advanced Encapsulating Security Protocol Platform '}
                 </p>
-                <div className="text-xs md:text-sm text-cyan-400 mt-2 font-mono">
-                  {new Date().toISOString().split('T')[0]} {new Date().toISOString().split('T')[1].slice(0, 8)} | STATUS: ACTIVE
-                </div>
               </div>
             </div>
           </div>

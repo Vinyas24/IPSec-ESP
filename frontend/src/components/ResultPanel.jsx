@@ -36,7 +36,6 @@ const ResultPanel = ({ result, isSimulating }) => {
 
   return (
     <div className="space-y-6">
-      {/* Status Card */}
       <Card className={`backdrop-blur-sm border-2 ${isAccepted ? 'bg-emerald-500/10 border-emerald-500/50' : 'bg-red-500/10 border-red-500/50'}`}>
         <CardHeader>
           <div className="flex items-center gap-3">
